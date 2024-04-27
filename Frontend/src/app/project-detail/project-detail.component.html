@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+  <div class="container">
+    <h1 class="display-5 fw-bold">Todo Manager</h1>
+    <div class="d-flex">
+      <button class="btn btn-primary" (click)="exportSummary(project.id)">Export Summary</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-3">
+ <h2 class="mb-4">Project : {{project.title}}</h2>
+
+   <!--Project Title and Update Button -->
+  <div class="mb-3">
+    <div class="input-group">
+      <span class="input-group-text">Project Name</span>
+      <input type="text" class="form-control" [(ngModel)]="project.title" aria-label="Project Title">
+      <button class="btn btn-primary" type="button" (click)="updateProject()" >Update</button>
+    </div>
+  </div>
+  <h2 class="mb-4">Todos</h2>
+  <!-- Action to Add Todo -->
+  <div class="mb-3">
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="newTodoDescription" placeholder="Enter todo description">
+      <button class="btn btn-success" type="button" (click)="addTodo()">Add Todo</button>
+    </div>
+  </div>
+  <!-- List of Todos in Table Format -->
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Description</th>
+          <th scope="col">Created Date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Updated Date</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todos">
+          <td>{{ todo.description }}</td>
+          <td>{{ todo.createdDate }}</td>
+          <td>{{ todo.status ? 'Completed' : 'Pending' }}</td>
+          <td>{{ todo.updatedDate }}</td>
+          <td>
+            <div class="btn-group" role="group">
+              <button class="btn btn-primary btn-sm me-1" (click)="markTodoComplete(todo.id)">Mark Complete</button>
+              <button class="btn btn-secondary btn-sm me-1" (click)="markTodoPending(todo.id)">Mark Pending</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteTodo(todo.id)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+</div>

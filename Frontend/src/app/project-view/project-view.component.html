@@ -1,0 +1,48 @@
+<div class="container py-4">
+  <header class="pb-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+      
+      <h1 class="display-5 fw-bold">Todo Manager</h1>
+    </a>
+  </header>
+
+
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+            <h4 class="text-center my-3 pb-3">PROJECTS</h4>
+
+            <table class="table mb-4">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Project</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let project of projects; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ project.title }}</td> <!-- Assuming project has a 'title' property -->
+                  <td>{{ project.createdDate}}</td> <!-- Assuming project has a 'date' property -->
+                 
+                  <td>
+                    <button (click)="viewProject(project.id)" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary ms-1">View</button>
+                    <button  (click)="deleteProject(project.id)" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger ms-1"
+                   >Delete</button>
+                    <!--<button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary ms-1"
+                      (click)="markAsFinished(project.id)">view</button>-->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

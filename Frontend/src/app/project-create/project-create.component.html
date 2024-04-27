@@ -1,0 +1,48 @@
+
+<div class="container py-4">
+  <header class="pb-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+      
+      <h1 class="display-5 fw-bold">Todo Manager</h1>
+    </a>
+  </header>
+
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 col-xl-7">
+          <div class="card rounded-3">
+            <div class="card-body p-4">
+              <h4 class="text-center my-3 pb-3">Create New Project</h4>
+                <!-- Error message area -->
+            <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                {{ errorMessage }}
+            </div>
+              <form #projectForm="ngForm" (ngSubmit)="createProject()" novalidate>
+                <div class="mb-3">
+                  <label for="title" class="form-label">Title</label>
+                  <input type="text" class="form-control" id="title" name="title" [(ngModel)]="newProject.title" required>
+                  <!--<div *ngIf="projectForm.controls['title'].invalid && projectForm.controls['title'].touched" class="text-danger">
+                    Title is required.
+                  </div>-->
+                  <div *ngIf="projectForm.controls['title']?.invalid && projectForm.controls['title']?.touched" class="text-danger">
+                    Title is required.
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Created Date</label>
+                  <!--<input type="text" class="form-control" id="createdDate" name="createdDate" [(ngModel)]="newProject.createdDate" disabled>
+                   Display the automatically set created date, but disable user input -->
+                </div>
+               <!-- <button type="submit" class="btn btn-primary">Create Project</button> -->
+                <button type="submit" class="btn btn-primary" [disabled]="projectForm.invalid">Create Project</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      
+
+      
+    </div>
+  </div>
+</div>
